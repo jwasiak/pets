@@ -46,18 +46,18 @@ const Gallery = (props) => {
     }
   }, [breed, images, page]);
 
-  useEffect(() => {
-    if (breeds.length) {
-      getRandomImages(breeds).then((data) => {
-        if (data) {
-          const totalImages = data.length;
-          setImages(data);
-          setTotalPages(Math.ceil(totalImages / imagesPerPage));
-          setPage(1);
-        }
-      });
-    }
-  }, [breeds]);
+  // useEffect(() => {
+  //   if (breeds.length) {
+  //     getRandomImages(breeds).then((data) => {
+  //       if (data) {
+  //         const totalImages = data.length;
+  //         setImages(data);
+  //         setTotalPages(Math.ceil(totalImages / imagesPerPage));
+  //         setPage(1);
+  //       }
+  //     });
+  //   }
+  // }, [breeds]);
 
   useEffect(() => {
     getAllBreeds().then((data) => {

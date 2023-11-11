@@ -18,7 +18,7 @@ const Breadcrumb = () => {
               setActive("home");
             }}
           >
-            <Link to="/">Home</Link>
+            <Link to="/home">Home</Link>
           </li>
           <li
             className={isActive === "gallery" ? "is-active" : null}
