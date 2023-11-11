@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllDogs, getBreedDogs } from "../api.js";
+import { getAllBreeds, getRandomImages, getBreedDogs } from "../api.js";
 import Pager from "../components/Pager.jsx";
 import Tile from "../components/Tile.jsx";
 import { imagesPerPage } from "../common.js";
@@ -27,16 +27,18 @@ const Gallery = (props) => {
   useEffect(() => {
     if (breed) {
       getBreedDogs(breed).then((data) => {
-        const totalImages = data.message.length;
-        setImages(data.message);
-        setTotalPages(Math.ceil(totalImages / imagesPerPage));
-        setPage(1);
+        if (data) {
+          const totalImages = data.length;
+          setImages(data);
+          setTotalPages(Math.ceil(totalImages / imagesPerPage));
+          setPage(1);
+        }
       });
     }
   }, [breed]);
 
   useEffect(() => {
-    if (breed !== null && page) {
+    if (breeds.length) {
       const start = (page - 1) * imagesPerPage;
       const end = start + imagesPerPage;
       const imagesToDisplay = images.slice(start, end);
@@ -45,8 +47,21 @@ const Gallery = (props) => {
   }, [breed, images, page]);
 
   useEffect(() => {
-    getAllDogs().then((data) => {
-      setBreeds(Object.keys(data.message));
+    if (breeds.length) {
+      getRandomImages(breeds).then((data) => {
+        if (data) {
+          const totalImages = data.length;
+          setImages(data);
+          setTotalPages(Math.ceil(totalImages / imagesPerPage));
+          setPage(1);
+        }
+      });
+    }
+  }, [breeds]);
+
+  useEffect(() => {
+    getAllBreeds().then((data) => {
+      setBreeds(data);
     });
   }, []);
 
@@ -64,9 +79,9 @@ const Gallery = (props) => {
   );
 };
 
-const Select = (props) => {
+const Select = ({ data, selectBreed }) => {
   const view = [];
-  props.data.forEach((option, key) => {
+  data.forEach((option, key) => {
     view.push(
       <option key={key} value={option}>
         {option}
@@ -74,12 +89,15 @@ const Select = (props) => {
     );
   });
 
-  const selectBreed = (ev) => {
-    props.selectBreed(ev.target.value);
+  const onChangeBreed = (ev) => {
+    selectBreed(ev.target.value);
   };
 
   return (
-    <select onChange={selectBreed}>
+    <select
+      className="has-background-grey has-text-black"
+      onChange={onChangeBreed}
+    >
       <option value="">Select breed ...</option>
       {view}
     </select>
