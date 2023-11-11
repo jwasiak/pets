@@ -7,7 +7,10 @@ const Breadcrumb = () => {
   return (
     <div className="container">
       <div className="block"></div>
-      <nav className="breadcrumb is-centered" aria-label="breadcrumbs">
+      <nav
+        className="breadcrumb is-centered is-large has-dot-separator"
+        aria-label="breadcrumbs"
+      >
         <ul>
           <li
             className={isActive === "home" ? "is-active" : null}

@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
 
-const Modal = (props) => {
+const Modal = ({ url }) => {
   const [isActive, setActive] = useState(false);
-
   const closeModal = () => {
     setActive(false);
   };
-
   useEffect(() => {
-    if (props.url) {
+    if (url) {
       setActive(true);
     }
-  }, [props.url]);
-
+  }, [url]);
   return (
     <div className={isActive ? "modal is-active" : "modal"}>
       <div className="modal-background" onClick={closeModal}></div>
       <div className="modal-content">
         <p className="image is-fullwidth">
-          <img src={props.url} alt="" />
+          <img src={url} alt="" />
         </p>
       </div>
       <button

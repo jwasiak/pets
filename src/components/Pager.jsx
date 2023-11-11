@@ -18,7 +18,9 @@ const Pager = (props) => {
     const label = `Idź do strony ${page}`;
 
     const classes =
-      page === current ? "pagination-link is-current" : "pagination-link";
+      page === current
+        ? "pagination-link  has-text-white is-current"
+        : "pagination-link  has-text-white";
 
     const aria = page === current ? page : null;
 
@@ -43,7 +45,7 @@ const Pager = (props) => {
   const previousButton = (page) => {
     return (
       <a
-        className="pagination-previous"
+        className="pagination-previous has-text-white"
         onClick={() => goToPage(page)}
         title="Idź do poprzedniej strony"
       >
@@ -63,7 +65,7 @@ const Pager = (props) => {
   const nextButton = (page) => {
     return (
       <a
-        className="pagination-next"
+        className="pagination-next has-text-white"
         onClick={() => goToPage(page)}
         title="Idź do następnej strony"
       >

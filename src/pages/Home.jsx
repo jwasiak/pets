@@ -3,7 +3,7 @@ import React from "react";
 const Home = () => {
   return (
     <section className="section">
-      <div className="container">
+      <div className="container has-text-black">
         <h1 className="title">Brief</h1>
         <div className="content">
           <p>Your challenge is to build out animals gallery web application.</p>

@@ -64,7 +64,7 @@ const Tile = (props) => {
 
   return (
     <div
-      className="box gallery-image"
+      className="box gallery-image has-background-black"
       style={style}
       title="Kliknij aby powiększyć"
       onClick={showModal}
