@@ -1,10 +1,10 @@
-import terser from "@rollup/plugin-terser";
-import { nodeResolve } from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import replace from "@rollup/plugin-replace";
-import css from "rollup-plugin-import-css";
-import image from "@rollup/plugin-image";
 import { babel } from "@rollup/plugin-babel";
+import commonjs from "@rollup/plugin-commonjs";
+import image from "@rollup/plugin-image";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import replace from "@rollup/plugin-replace";
+import terser from "@rollup/plugin-terser";
+import css from "rollup-plugin-import-css";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -22,7 +22,7 @@ export default {
   plugins: [
     nodeResolve(),
     commonjs(),
-    babel({ babelHelpers: "bundled" }),
+    babel({ babelHelpers: "bundled", exclude: "node_modules/**" }),
     replace({
       preventAssignment: true,
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
