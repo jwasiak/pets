@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
+import "../assets/styles.css";
 import Breadcrumb from "./components/Breadcrumb.jsx";
 import Home from "./pages/Home.jsx";
 import Gallery from "./pages/Gallery.jsx";

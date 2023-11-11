@@ -5,6 +5,7 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import terser from "@rollup/plugin-terser";
 import css from "rollup-plugin-import-css";
+import copy from "rollup-plugin-copy";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -27,7 +28,24 @@ export default {
       preventAssignment: true,
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
     }),
-    css({ output: "styles.css" }),
+    css({ output: "css/styles.css" }),
     image({ dom: false }),
+    copy({
+      targets: [
+        { src: "src/app.html", dest: "public", rename: "index.html" },
+        {
+          src: "node_modules/bulma/css/bulma.min.css",
+          dest: "public/css",
+        },
+        {
+          src: "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+          dest: "public/css/fontawesome",
+        },
+        {
+          src: "node_modules/@fortawesome/fontawesome-free/webfonts/*",
+          dest: "public/css/webfonts",
+        },
+      ],
+    }),
   ],
 };
