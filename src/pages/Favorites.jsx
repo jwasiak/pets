@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Pager from "../components/pager.jsx";
-import Tile from "../components/Tile.jsx";
+import Tile from "../components/tile.jsx";
 import Modal from "../components/modal.jsx";
 import { imagesPerPage, getFavourities } from "../common.js";
 

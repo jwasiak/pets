@@ -55,21 +55,10 @@ const Gallery = () => {
   }, [breed, images, page]);
 
   useEffect(() => {
-    if (breeds.length) {
-      getRandomImages(breeds).then((data) => {
-        if (data) {
-          const totalImages = data.length;
-          setImages(data);
-          setTotalPages(Math.ceil(totalImages / imagesPerPage));
-          setPage(1);
-        }
-      });
-    }
-  }, [breeds]);
-
-  useEffect(() => {
     getAllBreeds().then((data) => {
       setBreeds(data);
+      const randomBreed = data[Math.floor(Math.random() * data.length)];
+      setBreed(randomBreed);
     });
   }, []);
 
@@ -78,7 +67,7 @@ const Gallery = () => {
       <section className="section ">
         <div className="block has-text-centered">
           <div className="select">
-            <Select breeds={breeds} selectBreed={setBreed} />
+            <Select selected={breed} breeds={breeds} selectBreed={setBreed} />
           </div>
         </div>
         <div className="image-gallery">{gallery}</div>

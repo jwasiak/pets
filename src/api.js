@@ -30,7 +30,7 @@ export const getRandomImage = async (breed) => {
 };
 
 export const getRandomImages = async (breeds) => {
-  var randomBreed = breeds[Math.floor(Math.random() * breeds.length)];
+  const randomBreed = breeds[Math.floor(Math.random() * breeds.length)];
   return await getBreedDogs(randomBreed);
 };
 

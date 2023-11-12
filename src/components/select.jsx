@@ -1,6 +1,6 @@
 import React from "react";
 
-const Select = ({ breeds, selectBreed }) => {
+const Select = ({ selected, breeds, selectBreed }) => {
   const view = [];
   breeds.forEach((option, key) => {
     view.push(
@@ -15,7 +15,11 @@ const Select = ({ breeds, selectBreed }) => {
   };
 
   return (
-    <select className="has-background-grey has-text-black" onChange={select}>
+    <select
+      className="has-background-grey has-text-black"
+      value={selected}
+      onChange={select}
+    >
       <option value="">Select breed ...</option>
       {view}
     </select>
