@@ -1,5 +1,5 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import Root from "./root.jsx";
 import Home from "./pages/home.jsx";
 import Gallery from "./pages/gallery.jsx";
@@ -28,6 +28,7 @@ const routes = [
   },
 ];
 
-const basename = "/pets";
+// const basename = "/pets";
 
-export const router = createBrowserRouter(routes, { basename });
+// export const router = createHashRouter(routes, { basename });
+export const router = createHashRouter(routes);
