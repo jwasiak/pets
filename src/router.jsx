@@ -1,10 +1,10 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Root from "./Root.jsx";
-import Home from "./pages/Home.jsx";
-import Gallery from "./pages/Gallery.jsx";
-import Favorites from "./pages/Favorites.jsx";
-import Error from "./Error.jsx";
+import Root from "./root.jsx";
+import Home from "./pages/home.jsx";
+import Gallery from "./pages/gallery.jsx";
+import Favorites from "./pages/favorites.jsx";
+import Error from "./error.jsx";
 
 const routes = [
   {

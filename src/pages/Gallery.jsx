@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { getAllBreeds, getRandomImages, getBreedDogs } from "../api.js";
-import Pager from "../components/Pager.jsx";
-import Tile from "../components/Tile.jsx";
-import Modal from "../components/Modal.jsx";
+import Pager from "../components/pager.jsx";
+import Tile from "../components/tile.jsx";
+import Modal from "../components/modal.jsx";
+import Select from "../components/select.jsx";
 import { imagesPerPage } from "../common.js";
 
-const Gallery = (props) => {
+const Gallery = () => {
   const [breed, setBreed] = useState(null);
   const [breeds, setBreeds] = useState([]);
   const [images, setImages] = useState([]);
@@ -19,9 +20,9 @@ const Gallery = (props) => {
     setUrl(img);
   };
 
-  // const showModal = (img) => {
-  //   props.showModal(img);
-  // };
+  const hideModal = () => {
+    setUrl(null);
+  };
 
   const imagesViev = (images) => {
     const view = [];
@@ -77,40 +78,15 @@ const Gallery = (props) => {
       <section className="section ">
         <div className="block has-text-centered">
           <div className="select">
-            <Select data={breeds} selectBreed={setBreed} />
+            <Select breeds={breeds} selectBreed={setBreed} />
           </div>
         </div>
         <div className="image-gallery">{gallery}</div>
         <div className="block"></div>
         <Pager page={page} totalPages={totalPages} goToPage={setPage} />
       </section>
-      <Modal url={url} />
+      <Modal url={url} hideModal={hideModal} />
     </>
-  );
-};
-
-const Select = ({ data, selectBreed }) => {
-  const view = [];
-  data.forEach((option, key) => {
-    view.push(
-      <option key={key} value={option}>
-        {option}
-      </option>
-    );
-  });
-
-  const onChangeBreed = (ev) => {
-    selectBreed(ev.target.value);
-  };
-
-  return (
-    <select
-      className="has-background-grey has-text-black"
-      onChange={onChangeBreed}
-    >
-      <option value="">Select breed ...</option>
-      {view}
-    </select>
   );
 };
 

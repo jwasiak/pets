@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Pager from "../components/Pager.jsx";
+import Pager from "../components/pager.jsx";
 import Tile from "../components/Tile.jsx";
-import Modal from "../components/Modal.jsx";
+import Modal from "../components/modal.jsx";
 import { imagesPerPage, getFavourities } from "../common.js";
 
-const Favorites = (props) => {
-  console.log("Favorites");
+const Favorites = () => {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -16,9 +15,9 @@ const Favorites = (props) => {
     setUrl(img);
   };
 
-  // const showModal = (img) => {
-  //   props.showModal(img);
-  // };
+  const hideModal = () => {
+    setUrl(null);
+  };
 
   const imagesViev = (images) => {
     const view = [];
@@ -52,7 +51,7 @@ const Favorites = (props) => {
         <div className="block"></div>
         <Pager page={page} totalPages={totalPages} goToPage={setPage} />
       </section>
-      <Modal url={url} />
+      <Modal url={url} hideModal={hideModal} />
     </>
   );
 };

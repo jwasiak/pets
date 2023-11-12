@@ -1,18 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-const Modal = ({ url }) => {
-  const [isActive, setActive] = useState(false);
-  const closeModal = () => {
-    setActive(false);
-  };
-  useEffect(() => {
-    if (url) {
-      setActive(true);
-    }
-  }, [url]);
+const Modal = ({ url, hideModal }) => {
   return (
-    <div className={isActive ? "modal is-active" : "modal"}>
-      <div className="modal-background" onClick={closeModal}></div>
+    <div className={url ? "modal is-active" : "modal"}>
+      <div className="modal-background" onClick={hideModal}></div>
       <div className="modal-content">
         <p className="image is-fullwidth">
           <img src={url} alt="" />
@@ -21,7 +12,7 @@ const Modal = ({ url }) => {
       <button
         className="modal-close is-large"
         aria-label="close"
-        onClick={closeModal}
+        onClick={hideModal}
       ></button>
     </div>
   );
