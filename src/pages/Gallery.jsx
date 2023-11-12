@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllBreeds, getRandomImages, getBreedDogs } from "../api.js";
+import { getAllBreeds, getBreedImages } from "../api.js";
 import Pager from "../components/pager.jsx";
 import Tile from "../components/tile.jsx";
 import Modal from "../components/modal.jsx";
@@ -7,7 +7,7 @@ import Select from "../components/select.jsx";
 import { imagesPerPage } from "../common.js";
 
 const Gallery = () => {
-  const [breed, setBreed] = useState(null);
+  const [breed, setBreed] = useState("");
   const [breeds, setBreeds] = useState([]);
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
@@ -33,11 +33,11 @@ const Gallery = () => {
   };
 
   useEffect(() => {
-    if (breed) {
-      getBreedDogs(breed).then((data) => {
-        if (data) {
-          const totalImages = data.length;
-          setImages(data);
+    if (breed.length) {
+      getBreedImages(breed).then((images) => {
+        if (images) {
+          const totalImages = images.length;
+          setImages(images);
           setTotalPages(Math.ceil(totalImages / imagesPerPage));
           setPage(1);
         }

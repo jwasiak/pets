@@ -29,12 +29,7 @@ export const getRandomImage = async (breed) => {
   return null;
 };
 
-export const getRandomImages = async (breeds) => {
-  const randomBreed = breeds[Math.floor(Math.random() * breeds.length)];
-  return await getBreedDogs(randomBreed);
-};
-
-export const getBreedDogs = async (breed) => {
+export const getBreedImages = async (breed) => {
   const url = new URL(`https://dog.ceo/api/breed/${breed}/images`);
   const request = new Request(url);
   const response = await fetch(request);
