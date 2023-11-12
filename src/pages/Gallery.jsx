@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getAllBreeds, getRandomImages, getBreedDogs } from "../api.js";
 import Pager from "../components/Pager.jsx";
 import Tile from "../components/Tile.jsx";
+import Modal from "../components/Modal.jsx";
 import { imagesPerPage } from "../common.js";
 
 const Gallery = (props) => {
@@ -12,9 +13,15 @@ const Gallery = (props) => {
   const [totalPages, setTotalPages] = useState(1);
   const [gallery, setGallery] = useState(null);
 
+  const [url, setUrl] = useState(null);
+
   const showModal = (img) => {
-    props.showModal(img);
+    setUrl(img);
   };
+
+  // const showModal = (img) => {
+  //   props.showModal(img);
+  // };
 
   const imagesViev = (images) => {
     const view = [];
@@ -46,18 +53,18 @@ const Gallery = (props) => {
     }
   }, [breed, images, page]);
 
-  // useEffect(() => {
-  //   if (breeds.length) {
-  //     getRandomImages(breeds).then((data) => {
-  //       if (data) {
-  //         const totalImages = data.length;
-  //         setImages(data);
-  //         setTotalPages(Math.ceil(totalImages / imagesPerPage));
-  //         setPage(1);
-  //       }
-  //     });
-  //   }
-  // }, [breeds]);
+  useEffect(() => {
+    if (breeds.length) {
+      getRandomImages(breeds).then((data) => {
+        if (data) {
+          const totalImages = data.length;
+          setImages(data);
+          setTotalPages(Math.ceil(totalImages / imagesPerPage));
+          setPage(1);
+        }
+      });
+    }
+  }, [breeds]);
 
   useEffect(() => {
     getAllBreeds().then((data) => {
@@ -66,16 +73,19 @@ const Gallery = (props) => {
   }, []);
 
   return (
-    <section className="section ">
-      <div className="block has-text-centered">
-        <div className="select">
-          <Select data={breeds} selectBreed={setBreed} />
+    <>
+      <section className="section ">
+        <div className="block has-text-centered">
+          <div className="select">
+            <Select data={breeds} selectBreed={setBreed} />
+          </div>
         </div>
-      </div>
-      <div className="image-gallery">{gallery}</div>
-      <div className="block"></div>
-      <Pager page={page} totalPages={totalPages} goToPage={setPage} />
-    </section>
+        <div className="image-gallery">{gallery}</div>
+        <div className="block"></div>
+        <Pager page={page} totalPages={totalPages} goToPage={setPage} />
+      </section>
+      <Modal url={url} />
+    </>
   );
 };
 

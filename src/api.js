@@ -30,14 +30,8 @@ export const getRandomImage = async (breed) => {
 };
 
 export const getRandomImages = async (breeds) => {
-  const collection = [];
-  for (const breed of breeds) {
-    const image = await getRandomImage(breed);
-    if (image) {
-      collection.push(image);
-    }
-  }
-  return collection;
+  var randomBreed = breeds[Math.floor(Math.random() * breeds.length)];
+  return await getBreedDogs(randomBreed);
 };
 
 export const getBreedDogs = async (breed) => {

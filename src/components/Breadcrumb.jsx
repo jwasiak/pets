@@ -18,7 +18,7 @@ const Breadcrumb = () => {
               setActive("home");
             }}
           >
-            <Link to="/home">Home</Link>
+            <Link to="home">Home</Link>
           </li>
           <li
             className={isActive === "gallery" ? "is-active" : null}
@@ -26,7 +26,7 @@ const Breadcrumb = () => {
               setActive("gallery");
             }}
           >
-            <Link to="/gallery">Gallery</Link>
+            <Link to="gallery">Gallery</Link>
           </li>
           <li
             className={isActive === "favorites" ? "is-active" : null}
@@ -34,7 +34,7 @@ const Breadcrumb = () => {
               setActive("favorites");
             }}
           >
-            <Link to="/favorites">Favourite</Link>
+            <Link to="favorites">Favourite</Link>
           </li>
         </ul>
       </nav>

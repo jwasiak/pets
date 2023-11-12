@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
 import Pager from "../components/Pager.jsx";
 import Tile from "../components/Tile.jsx";
+import Modal from "../components/Modal.jsx";
 import { imagesPerPage, getFavourities } from "../common.js";
 
 const Favorites = (props) => {
+  console.log("Favorites");
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [gallery, setGallery] = useState(null);
+  const [url, setUrl] = useState(null);
 
   const showModal = (img) => {
-    props.showModal(img);
+    setUrl(img);
   };
+
+  // const showModal = (img) => {
+  //   props.showModal(img);
+  // };
 
   const imagesViev = (images) => {
     const view = [];
@@ -39,11 +46,14 @@ const Favorites = (props) => {
   }, []);
 
   return (
-    <section className="section ">
-      <div className="image-gallery">{gallery}</div>
-      <div className="block"></div>
-      <Pager page={page} totalPages={totalPages} goToPage={setPage} />
-    </section>
+    <>
+      <section className="section ">
+        <div className="image-gallery">{gallery}</div>
+        <div className="block"></div>
+        <Pager page={page} totalPages={totalPages} goToPage={setPage} />
+      </section>
+      <Modal url={url} />
+    </>
   );
 };
 
